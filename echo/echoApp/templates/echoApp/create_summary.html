@@ -1,0 +1,50 @@
+{% extends 'echoApp/base.html' %} {% block styles%} {% load static %}
+<link rel="stylesheet" href="{% static 'css/summary.css'%}" />
+<link rel="stylesheet" href="{% static 'css/create_summary.css'%}" />
+{% endblock %} {% block container%}
+<div style="display: flex; justify-content: center">
+    <div class="container">
+        <form name="add_company" action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <p class="title_country">
+                <label for="Title">Title: </label>
+                <input name="title" type="text" placeholder="" value="{{company.title}}"><br>
+            </p>
+            <div class="exp_lvl">
+                <label>Experience:</label>
+                <select id="select-experience" name="experience">
+                    <option value="-">-</option>
+                    <option value="Without experience">Without experience</option>
+                    <option value="From 1 to 3 years">From 1 to 3 years</option>
+                    <option value="More than 3 years">More than 3 years</option>
+                </select>
+            </div>
+
+            <div class="exp_lvl">
+                <label>Experience:</label>
+                <select id="select-education" name="education">
+                    <option value="-">-</option>
+                    <option value="Higher">Higher</option>
+                    <option value="Vocational">Vocational</option>
+                    <option value="Specialized secondary">Specialized secondary</option>
+                </select>
+            </div>
+
+            <div class="employment">
+                <label>Employment:</label>
+                <select id="select-employment" name="employment">
+                  <option value="-">-</option>
+                  <option value="Full employment">Full employment</option>
+                  <option value="Part-time employment">Part-time employment</option>
+                  <option value="One-time job">One-time job</option>
+                  <option value="internship">Internship</option>
+                </select>
+              </div>
+            <div class="box">
+                <textarea name="description" cols="30" rows="3" placeholder="Type here" class="textarea">{{ company.description }}</textarea>
+            </div>
+            <button type="submit" class="btn">Создать резюме</button>
+        </form>
+    </div>
+</div>
+{% endblock %}

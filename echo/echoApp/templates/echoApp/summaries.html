@@ -1,0 +1,28 @@
+{% extends 'echoApp/base.html' %} {% block styles%} {% load static %}
+<link rel="stylesheet" href="{% static 'css/vacancies.css'%}" />
+<link rel="stylesheet" href="{% static 'css/summaries.css'%}" />
+{% endblock %} {% block container%}
+    <form>
+        <input type="text" placeholder="Search here..." class="search">
+      </form>
+    <div class="cont">
+
+        <div class="resumies">
+            {% for i in summaries %}
+            <div class="res">
+                <img src="{{ i.user.img.url }}" class="img"/>
+                <p class="title">{{i.title}}</p>
+                <p class="name">{{i.user.first_name}} {{i.user.last_name}}</p>
+                <div class="brd">
+                    <p class="info">Experience: {{ i.experience }}</p>
+                    <p class="info">{{ i.user.country }}, {{ i.user.region }}</p>
+                    <p class="info">Education: {{ i.employment }}</p>
+                </div>
+                <a href="{% url 'summary' i.id %}" style="width: 100%">
+                    <button class="btn" value="">Look</button>
+                </a>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
